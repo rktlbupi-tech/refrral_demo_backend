@@ -4,7 +4,6 @@ import { User } from "../models/User.js";
 
 const router = express.Router();
 
-// Register new user
 
 router.post("/register", async (req, res) => {
   try {
