@@ -4,15 +4,14 @@ import dotenv from "dotenv";
 import { connectDB } from "./src/config/db.js";
 import userRoutes from "./src/routes/userRoutes.js";
 
-// ✅ Print Hello World in console first
-console.log("Hello World");  // <-- this prints in terminal when you run node
+console.log("Hello World");
 
 dotenv.config();
 const app = express();
 connectDB();
 
 app.use(cors({
-  origin: "*", // or specify your Flutter base URL
+  origin: "*",
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
   allowedHeaders: ["Content-Type", "Authorization"],
 }));
@@ -25,5 +24,5 @@ app.use("/", userRoutes);
 //   res.send("Hello World from server!");
 // });
 
-const PORT =  4000;
+const PORT =  process.env.PORT;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
