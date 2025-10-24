@@ -1,8 +1,8 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import { connectDB } from "./config/db.js";
-import userRoutes from "./routes/userRoutes.js";
+import { connectDB } from "./src/config/db.js";
+import userRoutes from "./src/routes/userRoutes.js";
 
 // ✅ Print Hello World in console first
 console.log("Hello World");  // <-- this prints in terminal when you run node
