@@ -17,12 +17,11 @@ router.post("/register", async (req, res) => {
     });
     await user.save();
 
-    // Reward referrer if exists
     if (referredBy) {
       const referrer = await User.findOne({ referralCode: referredBy });
       if (referrer) {
         referrer.referralCount += 1;
-        referrer.rewardPoints += 10; // points for referral
+        referrer.rewardPoints += 10; 
         await referrer.save();
       }
     }
