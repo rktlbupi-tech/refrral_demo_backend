@@ -62,16 +62,34 @@ router.post("/login", async (req, res) => {
 });
 
 
-router.get("/user/:referralCode", async (req, res) => {
-  try {
-    const user = await User.findOne({ referralCode: req.params.referralCode });
-    if (!user) return res.status(404).json({ message: "User not found" });
-    res.json(user);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Server error" });
-  }
+// router.get("/user/:referralCode", async (req, res) => {
+//   try {
+//     const user = await User.findOne({ referralCode: req.params.referralCode });
+//     if (!user) return res.status(404).json({ message: "User not found" });
+//     res.json(user);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: "Server error" });
+//   }
+// });
+
+router.get('/user', (req, res) => {
+  const { referralCode } = req.query;
+  const appLink = `myapp://user?referralCode=${referralCode}`;
+  const fallbackUrl = 'https://play.google.com/store/apps/details?id=com.yourpackage.name'; // iOS store link for Apple
+  res.send(`
+    <html>
+      <head>
+        <meta http-equiv="refresh" content="0;url=${appLink}" />
+        <script>
+          setTimeout(function() { window.location = "${fallbackUrl}"; }, 2000);
+        </script>
+      </head>
+      <body>Redirecting...</body>
+    </html>
+  `);
 });
+
 
 // server/routes/deeplink.js
 router.get('/user', (req, res) => {
