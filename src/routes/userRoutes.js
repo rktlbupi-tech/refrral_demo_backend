@@ -88,8 +88,7 @@ router.get("/user/email/:email", async (req, res) => {
 
 router.post("/track", async (req, res) => {
   try {
-    const { referralCode, event } = req.body; // event: "opened", "installed", "signup"
-
+    const { referralCode, event } = req.body; 
     const referrer = await User.findOne({ referralCode });
     if (!referrer) return res.status(404).json({ message: "Referrer not found" });
 

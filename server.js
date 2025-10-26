@@ -3,7 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import { connectDB } from "./src/config/db.js";
 import userRoutes from "./src/routes/userRoutes.js";
-
+import path from 'path';
 console.log("Hello World");
 
 dotenv.config();
@@ -16,6 +16,7 @@ app.use(cors({
   allowedHeaders: ["Content-Type", "Authorization"],
 }));
 app.use(express.json());
+app.use('/.well-known', express.static(path.join(__dirname, '.well-known')));
 
 // Routes
 app.use("/", userRoutes);
