@@ -1,0 +1,11 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "8DP38LCRP9.com.referral.ref_frontend",
+        "paths": [ "/user/*" ]
+      }
+    ]
+  }
+}
