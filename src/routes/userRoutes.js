@@ -73,6 +73,15 @@ router.get("/user/:referralCode", async (req, res) => {
   }
 });
 
+// server/routes/deeplink.js
+router.get('/user', (req, res) => {
+  const { referralCode } = req.query;
+  console.log('[DEBUG] Redirecting deep link for referralCode:', referralCode);
+
+  // Redirect to your app custom scheme
+  res.redirect(`myapp://user?referralCode=${referralCode}`);
+});
+
 
 router.get("/user/email/:email", async (req, res) => {
   try {
